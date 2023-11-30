@@ -1,5 +1,5 @@
 import { getThemeToggle } from "./src/theme.js";
-import { getVideo, drawVideo } from "./src/camera.js";
+import { getVideo, drawVideo, drawVideoBW } from "./src/camera.js";
 import { drawText } from "./src/text.js";
 import { Modal } from "./src/modal.js";
 
@@ -55,7 +55,7 @@ function setupAddText() {
 async function setupTakeSelfie() {
   const selfie = document.getElementById("take-selfie");
   const savePhotoBtn = document.getElementById("save-photo");
-
+  const addBwFilter = document.getElementById("bw-filter")
   const selfieModal = new Modal(
     "Take a selfie",
     selfie,
@@ -68,7 +68,9 @@ async function setupTakeSelfie() {
   const video = await getVideo(previewCanvas);
 
   savePhotoBtn.addEventListener("click", () => {
-    drawVideo(video, selfieLayer);
+    drawVideoBW(video, selfieLayer) 
+    // : 
+    // drawVideo(video, selfieLayer);
     redrawMeme();
   });
 }
